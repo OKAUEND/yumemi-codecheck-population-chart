@@ -15,6 +15,7 @@
   },
   "plugins": ["react", "react-refresh", "import", "unused-imports"],
   "settings": { "react": { "version": "detect" } },
+  "ignorePatterns": ["coverage"],
   "rules": {
     "react-refresh/only-export-components": "warn",
     "no-console": "error",

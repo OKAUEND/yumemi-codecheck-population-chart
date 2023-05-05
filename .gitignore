@@ -23,8 +23,12 @@ dist-ssr
 *.sln
 *.sw?
 
+# yarn 3 files and directories
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+
+#C8 coverage directory
+coverage
