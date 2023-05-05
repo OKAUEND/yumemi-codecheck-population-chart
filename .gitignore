@@ -32,3 +32,6 @@ dist-ssr
 
 #C8 coverage directory
 coverage
+
+#StoryBook
+src/stories
