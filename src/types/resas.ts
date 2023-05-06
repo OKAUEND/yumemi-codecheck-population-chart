@@ -8,7 +8,10 @@ interface ResasError {
   message: string | null;
   description?: string;
 }
-export type ResasResponse<T> = ResasSuccess<T> | ResasError;
+
+type APIError = number;
+
+export type ResasResponse<T> = ResasSuccess<T> | ResasError | APIError;
 
 export type Prefectures = {
   prefCode: number;
