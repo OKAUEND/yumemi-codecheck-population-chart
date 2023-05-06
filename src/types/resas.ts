@@ -18,8 +18,10 @@ export type Prefectures = {
   prefName: string;
 };
 
-export type PopulationInfo = Omit<Prefectures, 'prefCode'> &
-  Omit<Populations, 'boundaryYear'>;
+export type PopulationInfo = {
+  year: number;
+  [name: string]: number;
+};
 
 export type Populations = {
   boundaryYear: number;

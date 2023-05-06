@@ -37,14 +37,18 @@ describe('usePopulation Hook TEST', () => {
       expect(result.current.population.length).toEqual(0);
     });
 
+    //現状あまりいいやり方ではないため
+    //The current testing environment is not configured to support act(...)が発生するため
+    //解決するのだったら、Recoil内でループをやめて、サードライブラリでデータ取得をしたほうがよい
     await act(async () => {
       await waitFor(() => {
         result.current.setPref({ checked: true, value: 1, name: 'Mock' });
+        result.current.setPref({ checked: true, value: 2, name: 'Mock2' });
       });
     });
 
     await waitFor(() => {
-      expect(result.current.population.length).toEqual(1);
+      expect(result.current.population.length).toEqual(18);
     });
   });
 });

@@ -6,14 +6,22 @@ import { prefecturesMapToArray } from '@/src/feature/PopulationChart/hook/useSel
 
 const prefQuery = 'prefCode=';
 
-const filteredPopulation = selectorFamily<PopulationInfo, Prefectures>({
+const filteredPopulation = selectorFamily<PopulationInfo[], Prefectures>({
   key: 'data-flow/filted-population',
-  get: (prefecture) => async (): Promise<PopulationInfo> => {
+  get: (prefecture) => async (): Promise<PopulationInfo[]> => {
     const populations = await populationQuery(
       `${prefQuery}${prefecture.prefCode}`
     );
 
-    return { prefName: prefecture.prefName, data: populations.data };
+    const filtered = populations.data.filter((population) => {
+      return population.label === '総人口';
+    })[0];
+
+    const formmted = filtered.data.map((year) => {
+      return { year: year.year, [prefecture.prefCode]: year.value };
+    });
+
+    return formmted;
   },
 });
 
@@ -30,7 +38,21 @@ const populations = selector({
       )
     );
 
-    return populations;
+    if (populations.length === 0) {
+      return [];
+    }
+
+    const formmtedInfo = populations.reduce((prevInfo, curreantInfo) => {
+      const result = prevInfo.map((yearInfo) => {
+        const curreantResult = curreantInfo.find(
+          (curreanYearInfo) => curreanYearInfo.year === yearInfo.year
+        );
+        return { ...yearInfo, ...curreantResult };
+      });
+      return result;
+    });
+
+    return formmtedInfo;
   },
 });
 

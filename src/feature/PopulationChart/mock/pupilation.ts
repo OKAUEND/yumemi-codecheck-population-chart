@@ -37,18 +37,19 @@ const categoryFactory = (category: string): Category => {
 const populationFactory = (isRate: boolean): Population[] => {
   const startYear = 1960;
   const elapsedYear = 5;
+  const num = Math.floor(Math.random() * 47) + 1;
   const populations = Array.from({ length: 18 }, (_, index) => {
     const year = startYear + elapsedYear * index;
     if (isRate) {
       return {
         year: year,
-        value: startYear * index,
+        value: startYear * index * num,
         rate: 20.5,
       };
     } else {
       return {
         year: year,
-        value: startYear * index,
+        value: startYear * index * num,
       };
     }
   });
