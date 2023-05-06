@@ -17,10 +17,16 @@ export type Prefectures = {
 
 export type Populations = {
   boundaryYear: number;
-  data: Population[];
+  data: Category[];
 };
 
-type Population = {
+export interface Category {
+  label: string;
+  data: Population[];
+}
+
+export type Population = {
   year: number;
   value: number;
+  rate?: number;
 };
