@@ -17,9 +17,9 @@ describe('PopulationQuery TEST', () => {
     const data = await res;
 
     await waitFor(() => {
-      expect(data.result.boundaryYear).toEqual(9999);
-      expect(data.result.data.length).toEqual(4);
-      data.result.data.forEach((category, index) => {
+      expect(data.boundaryYear).toEqual(9999);
+      expect(data.data.length).toEqual(4);
+      data.data.forEach((category, index) => {
         const categoryIndex = populationCategories[index];
         expect(category.label).toEqual(categoryIndex);
       });
