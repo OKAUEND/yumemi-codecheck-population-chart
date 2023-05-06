@@ -24,7 +24,7 @@ export const prefecturesHandler = (
     path(),
     async (_, res, ctx) => {
       if (status === 400) {
-        return res(
+        return res.once(
           ctx.status(400),
           ctx.json({
             statusCode: 400,
@@ -35,7 +35,7 @@ export const prefecturesHandler = (
       }
 
       if (status === 500) {
-        return res(
+        return res.once(
           ctx.status(500),
           ctx.json({
             statusCode: 500,
