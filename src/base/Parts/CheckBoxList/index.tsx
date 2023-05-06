@@ -1,14 +1,14 @@
 import { CheckBox } from '@/src/base/Element/CheckBox';
 import { Prefectures } from '@/src/types/resas';
+import { SelectedCheckbox } from '@/src/types/Element';
 import style from './checkboxlist.module.scss';
 
 interface Props {
   values: Prefectures[];
-  checked: boolean;
-  changeHandler: () => void;
+  changeHandler: (selected: SelectedCheckbox) => void;
 }
 
-export const CheckBoxList = ({ values, checked, changeHandler }: Props) => {
+export const CheckBoxList = ({ values, changeHandler }: Props) => {
   return (
     <ul className={style.listbase}>
       {values.map((value) => (
@@ -16,7 +16,6 @@ export const CheckBoxList = ({ values, checked, changeHandler }: Props) => {
           <CheckBox
             label={value.prefName}
             value={value.prefCode}
-            checked={checked}
             changeHandler={changeHandler}
           />
         </li>
