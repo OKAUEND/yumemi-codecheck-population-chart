@@ -18,6 +18,9 @@ export type Prefectures = {
   prefName: string;
 };
 
+export type PopulationInfo = Omit<Prefectures, 'prefCode'> &
+  Omit<Populations, 'boundaryYear'>;
+
 export type Populations = {
   boundaryYear: number;
   data: Category[];

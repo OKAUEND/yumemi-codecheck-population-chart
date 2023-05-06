@@ -1,18 +1,19 @@
 import { selector, selectorFamily, useRecoilValue, waitForAll } from 'recoil';
 
-import { Prefectures, Populations } from '@/src/types/resas';
+import { Prefectures, PopulationInfo } from '@/src/types/resas';
 import { populationQuery } from '@/src/feature/PopulationChart/api/populationQuery';
 import { prefecturesMapToArray } from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';
 
 const prefQuery = 'prefCode=';
 
-const filteredPopulation = selectorFamily<Populations, Prefectures>({
+const filteredPopulation = selectorFamily<PopulationInfo, Prefectures>({
   key: 'data-flow/filted-population',
-  get: (prefecture) => async (): Promise<Populations> => {
+  get: (prefecture) => async (): Promise<PopulationInfo> => {
     const populations = await populationQuery(
       `${prefQuery}${prefecture.prefCode}`
     );
-    return populations;
+
+    return { prefName: prefecture.prefName, data: populations.data };
   },
 });
 
