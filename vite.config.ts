@@ -16,5 +16,6 @@ export default defineConfig({
     coverage: {
       provider: 'c8',
     },
+    setupFiles: ['src/mock/setup.ts'],
   },
 });
