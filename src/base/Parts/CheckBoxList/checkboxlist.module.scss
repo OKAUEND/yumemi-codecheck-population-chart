@@ -6,11 +6,11 @@
   margin: 0;
   padding: 0;
   .list {
-    width: 200px;
+    width: 150px;
     margin-bottom: 30px;
   }
   &::after {
     content: '';
-    width: 200px;
+    width: 150px;
   }
 }
