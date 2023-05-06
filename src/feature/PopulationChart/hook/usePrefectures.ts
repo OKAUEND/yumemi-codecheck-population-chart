@@ -1,4 +1,4 @@
-import { selector, useRecoilValue, useRecoilCallback } from 'recoil';
+import { selector, useRecoilValue } from 'recoil';
 import { Prefectures } from '@/src/types/resas';
 import { prefecturesQuery } from '@/src/feature/PopulationChart/api/prefecturesQuery';
 
