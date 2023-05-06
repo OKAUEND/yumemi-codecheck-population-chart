@@ -1,11 +1,10 @@
 import { describe, test, expect } from 'vitest';
-import { waitFor } from '@testing-library/react';
 
 import { setupMockServer } from '@/src/mock/setup';
 import { fetchRESASHandler, resasMockPath } from '@/src/utile/fetch/mock';
 
 import { fetchRESAS } from '@/src/utile/fetch';
-const server = setupMockServer(fetchRESASHandler());
+const server = setupMockServer([fetchRESASHandler()]);
 describe('fetchRESAS TEST', () => {
   test('通信成功時は、Resultがあり値が存在している', async () => {
     const result = fetchRESAS(resasMockPath);
