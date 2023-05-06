@@ -4,9 +4,9 @@ export interface ResasSuccess<T> {
 }
 
 interface ResasError {
-  statusCode: number;
-  message: string;
-  description: string;
+  statusCode?: number;
+  message: string | null;
+  description?: string;
 }
 export type ResasResponse<T> = ResasSuccess<T> | ResasError;
 
