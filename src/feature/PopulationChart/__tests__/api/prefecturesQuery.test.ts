@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { act, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 
 import { setupMockServer } from '@/src/mock/setup';
 import { prefecturesHandler } from '@/src/feature/PopulationChart/mock/predectures';
