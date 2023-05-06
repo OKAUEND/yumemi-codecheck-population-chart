@@ -16,7 +16,7 @@ export const prefecturesMapToArray = selector<Prefectures[]>({
 });
 
 export const useSelectedPrefectures = () => {
-  const selectedPref = useRecoilValue(selectedPrefectures);
+  const selectedPref = useRecoilValue(prefecturesMapToArray);
 
   const selectPrefectures = useRecoilCallback(
     ({ set }) =>

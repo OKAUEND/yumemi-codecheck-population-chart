@@ -13,15 +13,15 @@ describe('useSelectedPrefectures Hook TEST', () => {
       wrapper: RecoilRoot,
     });
 
-    expect(result.current[0].size).toEqual(0);
+    expect(result.current[0].length).toEqual(0);
     const testDate = testDateFactory(true, 1);
     act(() => {
       result.current[1](testDate);
     });
 
-    expect(result.current[0].size).toEqual(1);
+    expect(result.current[0].length).toEqual(1);
 
-    const mapData = result.current[0].get(testDate.value);
+    const mapData = result.current[0][0];
 
     expect(mapData).not.toEqual(undefined);
     expect(mapData).not.toEqual({ PrefCode: 1, PrefName: 'Mock' });
@@ -31,13 +31,13 @@ describe('useSelectedPrefectures Hook TEST', () => {
       wrapper: RecoilRoot,
     });
 
-    expect(result.current[0].size).toEqual(0);
+    expect(result.current[0].length).toEqual(0);
     const testDate = testDateFactory(true, 1);
     act(() => {
       result.current[1](testDate);
     });
 
-    expect(result.current[0].size).toEqual(1);
+    expect(result.current[0].length).toEqual(1);
 
     const unCheckedData = testDateFactory(false, 1);
 
@@ -45,9 +45,9 @@ describe('useSelectedPrefectures Hook TEST', () => {
       result.current[1](unCheckedData);
     });
 
-    expect(result.current[0].size).toEqual(0);
+    expect(result.current[0].length).toEqual(0);
 
-    const mapData = result.current[0].get(testDate.value);
+    const mapData = result.current[0][0];
 
     expect(mapData).toEqual(undefined);
   });
