@@ -14,8 +14,7 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     label: '都道府県市',
-    value: '',
-    checked: false,
+    value: 1,
     changeHandler: () => {
       return;
     },
