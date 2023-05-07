@@ -10135,6 +10135,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sanitize.css@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "sanitize.css@npm:13.0.0"
+  checksum: a99ca77c4d135800a4a93c3555e5aa4a2eb040a833df716dbe9132e1f2086fbf9acdb8021a579f40dcf77166d2d50f3358b4b6121a247d26fed5a0e6f5af3bb7
+  languageName: node
+  linkType: hard
+
 "sass@npm:^1.62.1":
   version: 1.62.1
   resolution: "sass@npm:1.62.1"
@@ -11925,6 +11932,7 @@ __metadata:
     react-dom: ^18.2.0
     recharts: ^2.5.0
     recoil: ^0.7.7
+    sanitize.css: ^13.0.0
     sass: ^1.62.1
     storybook: 7.0.8
     typescript: ^5.0.2
