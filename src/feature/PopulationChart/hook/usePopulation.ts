@@ -22,7 +22,7 @@ export const populationCategories: Categoryies[] = [
   '老年人口',
 ];
 
-const selectedCategoryState = atom<Categoryies>({
+const selectedCategoryState = atom<string>({
   key: 'state/category',
   default: populationCategories[0],
 });
@@ -95,12 +95,9 @@ export const usePopulation = () => {
 export const usePopulationCategories = () => {
   const selectedCategory = useRecoilValue(selectedCategoryState);
 
-  const changeCategory = useRecoilCallback(
-    ({ set }) =>
-      (target: Categoryies) => {
-        set(selectedCategoryState, () => target);
-      }
-  );
+  const changeCategory = useRecoilCallback(({ set }) => (target: string) => {
+    set(selectedCategoryState, () => target);
+  });
 
   return [populationCategories, selectedCategory, changeCategory] as const;
 };
