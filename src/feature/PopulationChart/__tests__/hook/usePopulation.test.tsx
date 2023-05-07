@@ -9,6 +9,7 @@ import {
   usePopulation,
   usePopulationCategories,
   populationCategories,
+  Categoryies,
 } from '@/src/feature/PopulationChart/hook/usePopulation';
 import { useSelectedPrefectures } from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';
 
@@ -77,7 +78,7 @@ describe('usePopulationCategories Hook TEST', () => {
       wrapper: RecoilRoot,
     });
 
-    const testDate = '仮人口';
+    const testDate: Categoryies = populationCategories[2];
 
     expect(result.current[1]).toEqual(populationCategories[0]);
 
