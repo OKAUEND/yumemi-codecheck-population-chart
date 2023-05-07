@@ -8,19 +8,33 @@ interface ResasError {
   message: string | null;
   description?: string;
 }
-export type ResasResponse<T> = ResasSuccess<T> | ResasError;
+
+type APIError = number;
+
+export type ResasResponse<T> = ResasSuccess<T> | ResasError | APIError;
 
 export type Prefectures = {
   prefCode: number;
   prefName: string;
 };
 
-export type Populations = {
-  boundaryYear: number;
-  data: Population[];
+export type PopulationInfo = {
+  year: number;
+  [name: string]: number;
 };
 
-type Population = {
+export type Populations = {
+  boundaryYear: number;
+  data: Category[];
+};
+
+export interface Category {
+  label: string;
+  data: Population[];
+}
+
+export type Population = {
   year: number;
   value: number;
+  rate?: number;
 };

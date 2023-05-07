@@ -16,7 +16,7 @@ describe('fetchRESAS TEST', () => {
   test('通信失敗:400', async () => {
     server.use(fetchRESASHandler(400));
     expect(fetchRESAS(resasMockPath)).rejects.toThrowError(
-      `RESAS Error 400 Bad Request`
+      `RESAS Error Status 400`
     );
   });
 

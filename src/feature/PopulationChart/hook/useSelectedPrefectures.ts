@@ -1,14 +1,22 @@
-import { atom, useRecoilCallback, useRecoilValue } from 'recoil';
+import { atom, selector, useRecoilCallback, useRecoilValue } from 'recoil';
 import { Prefectures } from '@/src/types/resas';
 import { SelectedCheckbox } from '@/src/types/Element';
 
-const selectedPrefectures = atom<Map<number, Prefectures>>({
+export const selectedPrefectures = atom<Map<number, Prefectures>>({
   key: 'state/selected-prefectures',
   default: new Map(),
 });
 
+export const prefecturesMapToArray = selector<Prefectures[]>({
+  key: 'convert/prefectures-map',
+  get: ({ get }) => {
+    const mapPrefectures = get(selectedPrefectures);
+    return [...mapPrefectures.values()];
+  },
+});
+
 export const useSelectedPrefectures = () => {
-  const selectedPref = useRecoilValue(selectedPrefectures);
+  const selectedPref = useRecoilValue(prefecturesMapToArray);
 
   const selectPrefectures = useRecoilCallback(
     ({ set }) =>

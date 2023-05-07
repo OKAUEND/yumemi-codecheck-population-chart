@@ -13,7 +13,7 @@ const generatePrefectures = (): Prefectures[] => {
 const PrefectureFactory = (id: number): Prefectures => {
   return {
     prefCode: id,
-    prefName: `都道府県市`,
+    prefName: `都道府県${id}`,
   };
 };
 

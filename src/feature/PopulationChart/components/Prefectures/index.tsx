@@ -4,7 +4,7 @@ import { useSelectedPrefectures } from '@/src/feature/PopulationChart/hook/useSe
 
 export const PrefectureList = () => {
   const prefectures = usePrefectures();
-  const [selectedPrefectures, selectPrefectures] = useSelectedPrefectures();
+  const [, selectPrefectures] = useSelectedPrefectures();
   return (
     <article>
       <h2>都道府県</h2>

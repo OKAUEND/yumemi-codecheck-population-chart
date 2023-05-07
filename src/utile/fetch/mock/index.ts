@@ -10,14 +10,7 @@ export const fetchRESASHandler = (
     resasMockPath,
     async (_, res, ctx) => {
       if (status === 400) {
-        return res.once(
-          ctx.status(200),
-          ctx.json({
-            statusCode: 400,
-            message: 'Bad Request',
-            description: '',
-          })
-        );
+        return res.once(ctx.status(200), ctx.json(400));
       }
 
       if (status === 403) {

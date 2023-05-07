@@ -1,6 +1,6 @@
-import { ResasResponse, Prefectures } from '@/src/types/resas';
+import { ResasResponse } from '@/src/types/resas';
 
-export const fetchRESAS = async (url: string) => {
+export const fetchRESAS = async <T>(url: string) => {
   const API_KEY = import.meta.env.VITE_RESAS_API_KEY;
   const res = await fetch(url, {
     headers: {
@@ -11,7 +11,11 @@ export const fetchRESAS = async (url: string) => {
     throw new Error('Error');
   }
 
-  const data: ResasResponse<Prefectures[]> = await res.json();
+  const data: ResasResponse<T> = await res.json();
+
+  if (typeof data === 'number') {
+    throw new Error(`RESAS Error Status ${data}`);
+  }
 
   if (!('result' in data)) {
     if (data.message === null) {
