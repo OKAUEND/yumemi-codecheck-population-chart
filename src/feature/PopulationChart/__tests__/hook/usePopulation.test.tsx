@@ -108,12 +108,50 @@ describe('usePopulation Hook TEST', () => {
     });
 
     const testDate = generatePopulations(1);
-    const testPOP = testDate.data.filter(
+    const workerPOP = testDate.data.filter(
       (data) => data.label === '生産年齢人口'
     )[0];
     await waitFor(() => {
       result.current.population.forEach((value, index) => {
-        const POP = testPOP.data[index];
+        const POP = workerPOP.data[index];
+        const target = value[1];
+
+        expect(target).toEqual(POP.value);
+      });
+    });
+
+    await act(async () => {
+      await waitFor(() => {
+        result.current.setCategory('年少人口');
+      });
+    });
+
+    const childPOP = testDate.data.filter(
+      (data) => data.label === '年少人口'
+    )[0];
+
+    await waitFor(() => {
+      result.current.population.forEach((value, index) => {
+        const POP = childPOP.data[index];
+        const target = value[1];
+
+        expect(target).toEqual(POP.value);
+      });
+    });
+
+    await act(async () => {
+      await waitFor(() => {
+        result.current.setCategory('老年人口');
+      });
+    });
+
+    const seniorPOP = testDate.data.filter(
+      (data) => data.label === '老年人口'
+    )[0];
+
+    await waitFor(() => {
+      result.current.population.forEach((value, index) => {
+        const POP = seniorPOP.data[index];
         const target = value[1];
 
         expect(target).toEqual(POP.value);
