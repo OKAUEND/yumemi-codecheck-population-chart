@@ -62,8 +62,6 @@ const populationFactory = (
           value: (startYear + code) * index * 2,
           rate: 20.5,
         };
-      default:
-        throw new Error(`Invalid category: ${category}`);
     }
   });
   return populations;
