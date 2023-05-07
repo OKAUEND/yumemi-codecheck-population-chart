@@ -1,0 +1,10 @@
+.prefectures {
+  padding-left: 30px;
+  padding-right: 30px;
+
+  @include mq(md2) {
+    padding-left: 60px;
+    padding-right: 0px;
+    width: $medium-width;
+  }
+}
