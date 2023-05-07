@@ -1,4 +1,4 @@
-import style from './App.module.scss';
+import style from '@/src/styles/App.module.scss';
 
 import { PopulationInfo } from '@/src/feature/PopulationChart';
 
