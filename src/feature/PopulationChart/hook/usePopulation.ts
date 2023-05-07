@@ -1,10 +1,29 @@
-import { selector, selectorFamily, useRecoilValue, waitForAll } from 'recoil';
+import {
+  atom,
+  selector,
+  selectorFamily,
+  useRecoilCallback,
+  useRecoilValue,
+  waitForAll,
+} from 'recoil';
 
 import { Prefectures, PopulationInfo } from '@/src/types/resas';
 import { populationQuery } from '@/src/feature/PopulationChart/api/populationQuery';
 import { prefecturesMapToArray } from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';
 
 const prefQuery = 'prefCode=';
+
+export const populationCategories = [
+  '総人口',
+  '年少人口',
+  '生産年齢人口',
+  '老年人口',
+];
+
+const selectedCategoryState = atom<string>({
+  key: 'state/category',
+  default: populationCategories[0],
+});
 
 const filteredPopulation = selectorFamily<PopulationInfo[], Prefectures>({
   key: 'data-flow/filted-population',
@@ -58,4 +77,14 @@ const populations = selector({
 
 export const usePopulation = () => {
   return useRecoilValue(populations);
+};
+
+export const usePopulationCategories = () => {
+  const selectedCategory = useRecoilValue(selectedCategoryState);
+
+  const changeCategory = useRecoilCallback(({ set }) => (target: string) => {
+    set(selectedCategoryState, () => target);
+  });
+
+  return [populationCategories, selectedCategory, changeCategory] as const;
 };

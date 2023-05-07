@@ -5,7 +5,11 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { setupMockServer } from '@/src/mock/setup';
 import { populationsHandler } from '@/src/feature/PopulationChart/mock/population';
 
-import { usePopulation } from '@/src/feature/PopulationChart/hook/usePopulation';
+import {
+  usePopulation,
+  usePopulationCategories,
+  populationCategories,
+} from '@/src/feature/PopulationChart/hook/usePopulation';
 import { useSelectedPrefectures } from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';
 
 describe('usePopulation Hook TEST', () => {
@@ -50,5 +54,37 @@ describe('usePopulation Hook TEST', () => {
     await waitFor(() => {
       expect(result.current.population.length).toEqual(18);
     });
+  });
+});
+
+describe('usePopulationCategories Hook TEST', () => {
+  test('人口のカテゴリーを文字列の配列で戻り値に含まれているか', async () => {
+    const { result } = renderHook(() => usePopulationCategories(), {
+      wrapper: RecoilRoot,
+    });
+
+    expect(result.current[0]).toEqual(populationCategories);
+  });
+  test('選択状態の初期値は総人口となっているか', async () => {
+    const { result } = renderHook(() => usePopulationCategories(), {
+      wrapper: RecoilRoot,
+    });
+
+    expect(result.current[1]).toEqual(populationCategories[0]);
+  });
+  test('状態を更新したら、選択の状態も変更されるか', async () => {
+    const { result } = renderHook(() => usePopulationCategories(), {
+      wrapper: RecoilRoot,
+    });
+
+    const testDate = '仮人口';
+
+    expect(result.current[1]).toEqual(populationCategories[0]);
+
+    act(() => {
+      result.current[2](testDate);
+    });
+
+    expect(result.current[1]).toEqual(testDate);
   });
 });
