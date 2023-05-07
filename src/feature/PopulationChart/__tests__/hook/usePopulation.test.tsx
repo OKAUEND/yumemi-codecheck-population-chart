@@ -3,7 +3,10 @@ import { RecoilRoot } from 'recoil';
 import { act, renderHook, waitFor } from '@testing-library/react';
 
 import { setupMockServer } from '@/src/mock/setup';
-import { populationsHandler } from '@/src/feature/PopulationChart/mock/population';
+import {
+  populationsHandler,
+  generatePopulations,
+} from '@/src/feature/PopulationChart/mock/population';
 
 import {
   usePopulation,
@@ -11,7 +14,10 @@ import {
   populationCategories,
   Categoryies,
 } from '@/src/feature/PopulationChart/hook/usePopulation';
-import { useSelectedPrefectures } from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';
+import {
+  selectedPrefectures,
+  useSelectedPrefectures,
+} from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';
 
 describe('usePopulation Hook TEST', () => {
   setupMockServer([populationsHandler()]);
@@ -52,8 +58,66 @@ describe('usePopulation Hook TEST', () => {
       });
     });
 
+    const testDate = generatePopulations(1);
+
+    await waitFor(() => {
+      const totalPOP = testDate.data[0].data;
+
+      result.current.population.forEach((value, index) => {
+        const nowPoP = totalPOP[index];
+        const target = value[1];
+        expect(target).toEqual(nowPoP.value);
+      });
+    });
+  });
+  test('人口カテゴリーが変更された場合、値も変わっているか', async () => {
+    const { result } = renderHook(
+      () => {
+        const population = usePopulation();
+        const [, , setCategory] = usePopulationCategories();
+
+        return { population, setCategory };
+      },
+      {
+        wrapper: ({ children }) => (
+          <RecoilRoot
+            initializeState={(snap) => {
+              snap.set(
+                selectedPrefectures,
+                new Map([[1, { prefCode: 1, prefName: '仮都道府県' }]])
+              );
+            }}
+          >
+            {children}
+          </RecoilRoot>
+        ),
+      }
+    );
+
     await waitFor(() => {
       expect(result.current.population.length).toEqual(18);
+    });
+
+    //現状あまりいいやり方ではないため
+    //The current testing environment is not configured to support act(...)が発生するため
+    //解決するのだったら、Recoil内でループをやめて、サードライブラリでデータ取得をしたほうがよい
+    await act(async () => {
+      await waitFor(() => {
+        result.current.setCategory('生産年齢人口');
+      });
+    });
+
+    const testDate = generatePopulations(1);
+    const testPOP = testDate.data.filter(
+      (data) => data.label === '生産年齢人口'
+    )[0];
+    await waitFor(() => {
+      result.current.population.forEach((value, index) => {
+        const POP = testPOP.data[index];
+        const target = value[1];
+
+        expect(target).toEqual(POP.value);
+      });
     });
   });
 });

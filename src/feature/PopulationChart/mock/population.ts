@@ -5,20 +5,17 @@ import {
   Population,
   Category,
 } from '@/src/types/resas';
+import {
+  populationCategories,
+  Categoryies,
+} from '@/src/feature/PopulationChart/hook/usePopulation';
 
 const path = () =>
   'https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear';
 
-export const populationCategories = [
-  '総人口',
-  '年少人口',
-  '生産年齢人口',
-  '老年人口',
-];
-
-export const generatePopulations = (): Populations => {
+export const generatePopulations = (code: number): Populations => {
   const array = populationCategories.map((category) => {
-    return categoryFactory(category);
+    return categoryFactory(category, code);
   });
   return {
     boundaryYear: 9999,
@@ -26,31 +23,47 @@ export const generatePopulations = (): Populations => {
   };
 };
 
-const categoryFactory = (category: string): Category => {
-  const isRate = category != '総人口';
+const categoryFactory = (category: Categoryies, code: number): Category => {
   return {
     label: category,
-    data: populationFactory(isRate),
+    data: populationFactory(category, code),
   };
 };
 
-const populationFactory = (isRate: boolean): Population[] => {
+const populationFactory = (
+  category: Categoryies,
+  code: number
+): Population[] => {
   const startYear = 1960;
   const elapsedYear = 5;
-  const num = Math.floor(Math.random() * 47) + 1;
   const populations = Array.from({ length: 18 }, (_, index) => {
     const year = startYear + elapsedYear * index;
-    if (isRate) {
-      return {
-        year: year,
-        value: startYear * index * num,
-        rate: 20.5,
-      };
-    } else {
-      return {
-        year: year,
-        value: startYear * index * num,
-      };
+    switch (category) {
+      case '総人口':
+        return {
+          year: year,
+          value: (startYear + code) * index,
+        };
+      case '年少人口':
+        return {
+          year: year,
+          value: ((startYear + code) * index) / 2,
+          rate: 20.5,
+        };
+      case '生産年齢人口':
+        return {
+          year: year,
+          value: (startYear + code) * index * 1.5,
+          rate: 20.5,
+        };
+      case '老年人口':
+        return {
+          year: year,
+          value: (startYear + code) * index * 2,
+          rate: 20.5,
+        };
+      default:
+        throw new Error(`Invalid category: ${category}`);
     }
   });
   return populations;
@@ -61,16 +74,14 @@ export const populationsHandler = (
 ) => {
   return rest.get<Populations, { id: string }, ResasResponse<Populations>>(
     path(),
-    async (_, res, ctx) => {
+    async (req, res, ctx) => {
+      const prefCode = parseInt(
+        req.url.searchParams.get('prefCode') || '1',
+        10
+      );
+
       if (status === 400) {
-        return res.once(
-          ctx.status(400),
-          ctx.json({
-            statusCode: 400,
-            message: 'Bad Request',
-            description: '',
-          })
-        );
+        return res.once(ctx.status(200), ctx.json(400));
       }
 
       if (status === 500) {
@@ -88,7 +99,7 @@ export const populationsHandler = (
         ctx.status(200),
         ctx.json({
           message: null,
-          result: generatePopulations(),
+          result: generatePopulations(prefCode),
         })
       );
     }
