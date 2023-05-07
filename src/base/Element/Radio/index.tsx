@@ -1,20 +1,22 @@
 import style from './radio.module.scss';
-import { SelectedCheckbox } from '@/src/types/Element';
 
 interface Props {
   label: string;
-  value: number;
-  changeHandler: ({ checked, value, name }: SelectedCheckbox) => void;
+  value: string;
+  checked: boolean;
+  categories: string;
+  changeHandler: (selected: string) => void;
 }
 
-export const Radio = ({ label, value, changeHandler }: Props) => {
+export const Radio = ({
+  label,
+  value,
+  checked,
+  categories,
+  changeHandler,
+}: Props) => {
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selected: SelectedCheckbox = {
-      checked: event.target.checked,
-      value: value,
-      name: label,
-    };
-    changeHandler(selected);
+    changeHandler(event.target.value);
   };
 
   return (
@@ -23,6 +25,8 @@ export const Radio = ({ label, value, changeHandler }: Props) => {
         className={style.radio}
         type="radio"
         value={value}
+        name={categories}
+        checked={checked}
         onChange={onChange}
       />
       <span className={style.text}> {label}</span>

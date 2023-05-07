@@ -14,7 +14,9 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     label: '仮総人口',
-    value: 1,
+    value: '仮総人口',
+    checked: false,
+    categories: 'mock',
     changeHandler: () => {
       return;
     },
