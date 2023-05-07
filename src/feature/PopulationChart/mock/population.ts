@@ -75,14 +75,12 @@ export const populationsHandler = (
   return rest.get<Populations, { id: string }, ResasResponse<Populations>>(
     path(),
     async (req, res, ctx) => {
-      const prefCode = parseInt(
-        req.url.searchParams.get('prefCode') || '1',
-        10
-      );
-
-      if (status === 400) {
+      const queryPrefCode = req.url.searchParams.get('prefCode');
+      if (queryPrefCode === null || status === 400) {
         return res.once(ctx.status(200), ctx.json(400));
       }
+
+      const prefCode = parseInt(queryPrefCode);
 
       if (status === 500) {
         return res.once(
