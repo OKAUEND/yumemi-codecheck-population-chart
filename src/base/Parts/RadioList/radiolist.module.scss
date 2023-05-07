@@ -6,8 +6,10 @@
   margin: 0;
   padding: 0;
   .list {
-    width: 150px;
     margin-bottom: 30px;
+    @include mq(md2) {
+      width: 150px;
+    }
   }
   &::after {
     content: '';
