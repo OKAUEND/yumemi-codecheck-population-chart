@@ -2,7 +2,7 @@
   padding-left: 30px;
   padding-right: 30px;
 
-  @include mq(md2) {
+  @include mq(lg) {
     padding-left: 60px;
     padding-right: 0px;
     width: $medium-width;

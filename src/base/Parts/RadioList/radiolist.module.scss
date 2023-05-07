@@ -7,7 +7,7 @@
   padding: 0;
   .list {
     margin-bottom: 30px;
-    @include mq(md2) {
+    @include mq(sm) {
       width: 150px;
     }
   }
