@@ -1,11 +1,11 @@
 import style from './App.module.scss';
 
-import { PopulationChart } from '@/src/feature/PopulationChart';
+import { PopulationInfo } from '@/src/feature/PopulationChart';
 
 function App() {
   return (
     <section className={`${style.root}`}>
-      <PopulationChart />
+      <PopulationInfo />
     </section>
   );
 }
