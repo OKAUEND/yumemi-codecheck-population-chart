@@ -16,7 +16,7 @@ export const populationCategories = [
   '老年人口',
 ];
 
-const generatePopulations = (): Populations => {
+export const generatePopulations = (): Populations => {
   const array = populationCategories.map((category) => {
     return categoryFactory(category);
   });

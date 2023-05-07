@@ -3,7 +3,7 @@ import { RecoilRoot } from 'recoil';
 import { act, renderHook, waitFor } from '@testing-library/react';
 
 import { setupMockServer } from '@/src/mock/setup';
-import { populationsHandler } from '@/src/feature/PopulationChart/mock/pupilation';
+import { populationsHandler } from '@/src/feature/PopulationChart/mock/population';
 
 import { usePopulation } from '@/src/feature/PopulationChart/hook/usePopulation';
 import { useSelectedPrefectures } from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';

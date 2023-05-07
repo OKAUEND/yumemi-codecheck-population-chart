@@ -5,7 +5,7 @@ import { setupMockServer } from '@/src/mock/setup';
 import {
   populationsHandler,
   populationCategories,
-} from '@/src/feature/PopulationChart/mock/pupilation';
+} from '@/src/feature/PopulationChart/mock/population';
 import { populationQuery } from '@/src/feature/PopulationChart/api/populationQuery';
 
 describe('PopulationQuery TEST', () => {
