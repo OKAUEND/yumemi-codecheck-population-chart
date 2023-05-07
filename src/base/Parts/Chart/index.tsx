@@ -20,7 +20,7 @@ interface Props {
 export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
   return (
     <>
-      <ResponsiveContainer width="90%" height={500}>
+      <ResponsiveContainer width="100%" height={400}>
         <LineChart
           width={700}
           height={300}
