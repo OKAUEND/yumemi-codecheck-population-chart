@@ -2,11 +2,9 @@ import { describe, test, expect } from 'vitest';
 import { waitFor } from '@testing-library/react';
 
 import { setupMockServer } from '@/src/mock/setup';
-import {
-  populationsHandler,
-  populationCategories,
-} from '@/src/feature/PopulationChart/mock/population';
+import { populationsHandler } from '@/src/feature/PopulationChart/mock/population';
 import { populationQuery } from '@/src/feature/PopulationChart/api/populationQuery';
+import { populationCategories } from '@/src/feature/PopulationChart/hook/usePopulation';
 
 describe('PopulationQuery TEST', () => {
   const server = setupMockServer([populationsHandler()]);
@@ -28,7 +26,9 @@ describe('PopulationQuery TEST', () => {
   test('通信失敗:400', async () => {
     server.use(populationsHandler(400));
 
-    expect(populationQuery(query)).rejects.toThrowError(new Error(`Error`));
+    expect(populationQuery(query)).rejects.toThrowError(
+      new Error(`RESAS Error Status 400`)
+    );
   });
 
   test('通信失敗:500', async () => {
