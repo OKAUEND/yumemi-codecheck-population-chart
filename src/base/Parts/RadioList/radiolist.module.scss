@@ -6,11 +6,9 @@
   margin: 0;
   padding: 0;
   .list {
-    width: 150px;
     margin-bottom: 30px;
-  }
-  &::after {
-    content: '';
-    width: 150px;
+    @include mq(sm) {
+      width: 150px;
+    }
   }
 }

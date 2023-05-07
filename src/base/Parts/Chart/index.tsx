@@ -20,7 +20,7 @@ interface Props {
 export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
   return (
     <>
-      <ResponsiveContainer width="90%" height={500}>
+      <ResponsiveContainer width="100%" height={400}>
         <LineChart
           width={700}
           height={300}
@@ -46,7 +46,14 @@ export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
               />
             );
           })}
-          <Legend />
+          <Legend
+            layout="horizontal"
+            verticalAlign="bottom"
+            align="center"
+            wrapperStyle={{
+              paddingLeft: '10px',
+            }}
+          />
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>

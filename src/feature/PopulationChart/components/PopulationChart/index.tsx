@@ -5,6 +5,8 @@ import {
 import { LineChrt } from '@/src/base/Parts/Chart';
 import { RadioList } from '@/src/base/Parts/RadioList';
 import { useSelectedPrefectures } from '../../hook/useSelectedPrefectures';
+import style from '@/src/feature/PopulationChart/styles/components/populationChart.module.scss';
+
 export const PopulationChart = () => {
   const population = usePopulation();
   const [selectedPref] = useSelectedPrefectures();
@@ -12,14 +14,16 @@ export const PopulationChart = () => {
     usePopulationCategories();
 
   return (
-    <article>
+    <article className={style.populationChart}>
       <h2>人口</h2>
-      <RadioList
-        categories={categories}
-        selected={selectedCategory}
-        group="populationCategories"
-        changeHandler={changeCategory}
-      />
+      <div className={style.populationCategories}>
+        <RadioList
+          categories={categories}
+          selected={selectedCategory}
+          group="populationCategories"
+          changeHandler={changeCategory}
+        />
+      </div>
       <LineChrt populationInfo={population} selectedPref={selectedPref} />
     </article>
   );

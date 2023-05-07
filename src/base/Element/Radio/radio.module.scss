@@ -46,8 +46,8 @@
 }
 
 .text {
-  display: block;
-  // height: 24px;
+  display: flex;
+  align-items: center;
   font-weight: 400;
   font-size: 1.1rem;
 }
