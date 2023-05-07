@@ -46,7 +46,14 @@ export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
               />
             );
           })}
-          <Legend />
+          <Legend
+            layout="horizontal"
+            verticalAlign="bottom"
+            align="center"
+            wrapperStyle={{
+              paddingLeft: '10px',
+            }}
+          />
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>
