@@ -1,28 +1,60 @@
-import { selector, selectorFamily, useRecoilValue, waitForAll } from 'recoil';
+import {
+  atom,
+  selector,
+  selectorFamily,
+  useRecoilCallback,
+  useRecoilValue,
+  waitForAll,
+} from 'recoil';
 
-import { Prefectures, PopulationInfo } from '@/src/types/resas';
+import { Prefectures, PopulationInfo, Populations } from '@/src/types/resas';
 import { populationQuery } from '@/src/feature/PopulationChart/api/populationQuery';
 import { prefecturesMapToArray } from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';
 
 const prefQuery = 'prefCode=';
 
-const filteredPopulation = selectorFamily<PopulationInfo[], Prefectures>({
-  key: 'data-flow/filted-population',
-  get: (prefecture) => async (): Promise<PopulationInfo[]> => {
+export type Categoryies = '総人口' | '年少人口' | '生産年齢人口' | '老年人口';
+
+export const populationCategories: Categoryies[] = [
+  '総人口',
+  '年少人口',
+  '生産年齢人口',
+  '老年人口',
+];
+
+const selectedCategoryState = atom<Categoryies>({
+  key: 'state/category',
+  default: populationCategories[0],
+});
+
+const populationsQuery = selectorFamily<Populations, Prefectures>({
+  key: 'data-flow/population-query',
+  get: (prefecture) => async () => {
     const populations = await populationQuery(
       `${prefQuery}${prefecture.prefCode}`
     );
-
-    const filtered = populations.data.filter((population) => {
-      return population.label === '総人口';
-    })[0];
-
-    const formmted = filtered.data.map((year) => {
-      return { year: year.year, [prefecture.prefCode]: year.value };
-    });
-
-    return formmted;
+    return populations;
   },
+});
+
+const filteredPopulation = selectorFamily<PopulationInfo[], Prefectures>({
+  key: 'data-flow/filtered-population',
+  get:
+    (prefecture) =>
+    async ({ get }): Promise<PopulationInfo[]> => {
+      const selectedCategory = get(selectedCategoryState);
+      const populations = get(populationsQuery(prefecture));
+
+      const filtered = populations.data.filter((population) => {
+        return population.label === selectedCategory;
+      })[0];
+
+      const formmted = filtered.data.map((year) => {
+        return { year: year.year, [prefecture.prefCode]: year.value };
+      });
+
+      return formmted;
+    },
 });
 
 const populations = selector({
@@ -58,4 +90,17 @@ const populations = selector({
 
 export const usePopulation = () => {
   return useRecoilValue(populations);
+};
+
+export const usePopulationCategories = () => {
+  const selectedCategory = useRecoilValue(selectedCategoryState);
+
+  const changeCategory = useRecoilCallback(
+    ({ set }) =>
+      (target: Categoryies) => {
+        set(selectedCategoryState, () => target);
+      }
+  );
+
+  return [populationCategories, selectedCategory, changeCategory] as const;
 };

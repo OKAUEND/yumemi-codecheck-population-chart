@@ -3,7 +3,7 @@ import { ResasResponse, Prefectures } from '@/src/types/resas';
 
 const path = () => 'https://opendata.resas-portal.go.jp/api/v1/prefectures';
 
-const generatePrefectures = (): Prefectures[] => {
+export const generatePrefectures = (): Prefectures[] => {
   const array = Array.from({ length: 47 }, (_, index) =>
     PrefectureFactory(index)
   );
