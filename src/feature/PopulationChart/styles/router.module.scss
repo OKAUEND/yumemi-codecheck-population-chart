@@ -1,11 +1,11 @@
-.population {
+.population_router {
   width: 100%;
   display: flex;
 
   flex-direction: column;
   align-items: center;
 
-  .chart_container {
+  .population_chart_container {
     height: 580px;
   }
 }

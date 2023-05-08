@@ -14,9 +14,9 @@ export const PopulationChart = () => {
     usePopulationCategories();
 
   return (
-    <article className={style.populationChart}>
+    <article className={style.population_chart}>
       <h2>人口</h2>
-      <div className={style.populationCategories}>
+      <div className={style.population_categories}>
         <RadioList
           categories={categories}
           selected={selectedCategory}

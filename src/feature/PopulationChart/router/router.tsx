@@ -9,11 +9,11 @@ import { LoadingBasicAnimation } from '@/src/base/Parts/Loading';
 
 export const PopulationInfo = () => {
   return (
-    <section className={style.population}>
+    <section className={style.population_router}>
       <ErrorBoundaryExtended>
         <Suspense fallback={<LoadingBasicAnimation />}>
           <PrefectureList />
-          <div className={style.chart_container}>
+          <div className={style.population_chart_container}>
             <Suspense fallback={<LoadingBasicAnimation />}>
               <PopulationChart />
             </Suspense>
