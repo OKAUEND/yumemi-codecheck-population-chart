@@ -5,17 +5,20 @@ import { PrefectureList } from '@/src/feature/PopulationChart/components/Prefect
 import { PopulationChart } from '@/src/feature/PopulationChart/components/PopulationChart';
 
 import { ErrorBoundaryExtended } from '@/src/base/Parts/Error';
+import { LoadingBasicAnimation } from '@/src/base/Parts/Loading';
 
 export const PopulationInfo = () => {
   return (
     <section className={style.population}>
       <ErrorBoundaryExtended>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<LoadingBasicAnimation />}>
           <PrefectureList />
         </Suspense>
-        <Suspense fallback={<div>Loading...</div>}>
-          <PopulationChart />
-        </Suspense>
+        <div className={style.chart_container}>
+          <Suspense fallback={<LoadingBasicAnimation />}>
+            <PopulationChart />
+          </Suspense>
+        </div>
       </ErrorBoundaryExtended>
     </section>
   );
