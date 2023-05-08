@@ -1,18 +1,25 @@
+import { Suspense } from 'react';
 import style from '@/src/feature/PopulationChart/styles/router.module.scss';
 
 import { PrefectureList } from '@/src/feature/PopulationChart/components/Prefectures';
 import { PopulationChart } from '@/src/feature/PopulationChart/components/PopulationChart';
-import { Suspense } from 'react';
+
+import { ErrorBoundaryExtended } from '@/src/base/Parts/Error';
+import { LoadingBasicAnimation } from '@/src/base/Parts/Loading';
 
 export const PopulationInfo = () => {
   return (
     <section className={style.population}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <PrefectureList />
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
-        <PopulationChart />
-      </Suspense>
+      <ErrorBoundaryExtended>
+        <Suspense fallback={<LoadingBasicAnimation />}>
+          <PrefectureList />
+          <div className={style.chart_container}>
+            <Suspense fallback={<LoadingBasicAnimation />}>
+              <PopulationChart />
+            </Suspense>
+          </div>
+        </Suspense>
+      </ErrorBoundaryExtended>
     </section>
   );
 };

@@ -20,12 +20,12 @@ describe('PrefecturesQuery TEST', () => {
   test('通信失敗:400', async () => {
     server.use(prefecturesHandler(400));
 
-    expect(prefecturesQuery).rejects.toThrowError(new Error(`Error`));
+    expect(prefecturesQuery).rejects.toThrowError('400');
   });
 
   test('通信失敗:500', async () => {
     server.use(prefecturesHandler(500));
 
-    expect(prefecturesQuery).rejects.toThrowError(new Error(`Error`));
+    expect(prefecturesQuery).rejects.toThrowError('500');
   });
 });

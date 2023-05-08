@@ -26,14 +26,12 @@ describe('PopulationQuery TEST', () => {
   test('通信失敗:400', async () => {
     server.use(populationsHandler(400));
 
-    expect(populationQuery(query)).rejects.toThrowError(
-      new Error(`RESAS Error Status 400`)
-    );
+    expect(populationQuery(query)).rejects.toThrowError(new Error(`400`));
   });
 
   test('通信失敗:500', async () => {
     server.use(populationsHandler(500));
 
-    expect(populationQuery(query)).rejects.toThrowError(new Error(`Error`));
+    expect(populationQuery(query)).rejects.toThrowError(new Error(`500`));
   });
 });
