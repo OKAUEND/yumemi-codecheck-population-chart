@@ -34,7 +34,10 @@ export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="year" />
-          <YAxis />
+          <YAxis
+            width={100}
+            tickFormatter={(value) => `${value.toLocaleString()}`}
+          />
           {selectedPref.map((pref) => {
             return (
               <Line
