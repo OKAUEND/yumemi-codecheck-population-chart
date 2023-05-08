@@ -1,0 +1,11 @@
+.population_router {
+  width: 100%;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+
+  .population_chart_container {
+    height: 580px;
+  }
+}
