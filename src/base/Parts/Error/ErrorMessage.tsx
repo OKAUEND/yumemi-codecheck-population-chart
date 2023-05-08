@@ -10,7 +10,7 @@ import style from '@/src/base/Parts/Error/style/ErrorMessage.module.scss';
 const ErrorMessage = ({ status }: CallBackProps) => {
   const message = useErrorState(status);
   return (
-    <section className={style.errorMessage}>
+    <section className={style.error_message}>
       <h1>{status ? status : ''}</h1>
       <span>{message.message}</span>
       <span>{message.subMessage}</span>
