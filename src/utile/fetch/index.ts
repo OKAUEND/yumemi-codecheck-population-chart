@@ -3,6 +3,7 @@ import { ResasResponse } from '@/src/types/resas';
 export const fetchRESAS = async <T>(url: string) => {
   const API_KEY = import.meta.env.VITE_RESAS_API_KEY;
   const res = await fetch(url, {
+    method: 'GET',
     headers: {
       'X-API-KEY': API_KEY,
     },
