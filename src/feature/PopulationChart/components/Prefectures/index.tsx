@@ -9,7 +9,9 @@ export const PrefectureList = () => {
   return (
     <article className={stlye.prefectures}>
       <h2>都道府県</h2>
-      <CheckBoxList values={prefectures} changeHandler={selectPrefectures} />
+      <div className={stlye.prefectures_list}>
+        <CheckBoxList values={prefectures} changeHandler={selectPrefectures} />
+      </div>
     </article>
   );
 };
