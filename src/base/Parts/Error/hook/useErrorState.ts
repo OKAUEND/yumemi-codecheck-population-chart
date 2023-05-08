@@ -12,6 +12,7 @@ const createErrorMessage = (
 const errorMessage = selectorFamily<ErrorMessage, number>({
   key: 'data/error-message',
   get: (code: number) => () => {
+    //それぞれのステータスで文面を変えたいので、ステータスをスイッチで判別させる
     switch (code) {
       case 400:
         return createErrorMessage(
@@ -33,6 +34,7 @@ const errorMessage = selectorFamily<ErrorMessage, number>({
           'Internal server error'
         );
       default:
+        //扱っていないステータスコードが存在した場合は不明なエラーに分類させる
         return createErrorMessage(
           '不明なエラーが発生しました',
           'Unknown error'

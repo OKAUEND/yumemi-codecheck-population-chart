@@ -3,7 +3,7 @@ import { CallBackProps } from './type/ErrorMessage';
 import style from '@/src/base/Parts/Error/style/ErrorMessage.module.scss';
 
 /**
- * エラーコードによってメッセージを表示させる
+ * エラーコード及びエラーメッセージを表示するコンポーネント
  * @param status
  * @returns
  */

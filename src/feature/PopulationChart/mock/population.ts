@@ -18,6 +18,7 @@ export const generatePopulations = (code: number): Populations => {
     return categoryFactory(category, code);
   });
   return {
+    //Mockデータなので、あり得ない年数にしておく
     boundaryYear: 9999,
     data: array,
   };
@@ -38,6 +39,8 @@ const populationFactory = (
   const elapsedYear = 5;
   const populations = Array.from({ length: 18 }, (_, index) => {
     const year = startYear + elapsedYear * index;
+    //Mock用に人口情報データを作成する
+    //カテゴリー毎で値を変えるようにし、切り替えた時に視覚的にも表示が変わるようにし動作していることを確認可能にする
     switch (category) {
       case '総人口':
         return {
@@ -59,7 +62,7 @@ const populationFactory = (
       case '老年人口':
         return {
           year: year,
-          value: (startYear + code) * index * 2,
+          value: (startYear + code) * index * 3,
           rate: 20.5,
         };
     }
