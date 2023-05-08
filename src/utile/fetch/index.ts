@@ -8,7 +8,7 @@ export const fetchRESAS = async <T>(url: string) => {
     },
   });
   if (!res.ok) {
-    throw new Error('Error');
+    throw new Error(`${res.status}`);
   }
 
   const data: ResasResponse<T> = await res.json();
