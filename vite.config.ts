@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/yumemi-codecheck-population-chart/',
   resolve: {
     alias: {
       '@/': `${__dirname}/`,
