@@ -37,13 +37,7 @@ export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey="year"
-            label={{
-              value: '年度',
-              position: 'insideBottomRight',
-              offset: 0,
-              dy: 10,
-            }}
-            scale="band"
+            label={{ value: '年度', position: 'bottom', dx: 0 }}
           />
           <YAxis
             width={100}
