@@ -10,9 +10,9 @@ interface Props {
 
 export const CheckBoxList = ({ values, changeHandler }: Props) => {
   return (
-    <ul className={style.listbase}>
+    <ul className={style.checkbox_container}>
       {values.map((value) => (
-        <li key={value.prefCode} className={style.list}>
+        <li key={value.prefCode} className={style.checkbox_list}>
           <CheckBox
             label={value.prefName}
             value={value.prefCode}

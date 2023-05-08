@@ -15,9 +15,9 @@ export const RadioList = ({
   changeHandler,
 }: Props) => {
   return (
-    <ul className={style.listbase}>
+    <ul className={style.radio_container}>
       {categories.map((category, index) => (
-        <li key={index} className={style.list}>
+        <li key={index} className={style.radio_list}>
           <Radio
             categories={group}
             label={category}

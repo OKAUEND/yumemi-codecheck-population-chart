@@ -9,11 +9,14 @@ import { LoadingBasicAnimation } from '@/src/base/Parts/Loading';
 
 export const PopulationInfo = () => {
   return (
-    <section className={style.population}>
+    <section className={style.population_router}>
       <ErrorBoundaryExtended>
+        {/**Suspenseを入れ子にすることで、初期ロードは全体がロード画面になり、都道府県の選択時にはチャート部分だけをロード画面にし
+         * 画面全体のロードとパーツ部分だけのロードを切り分けるようにする
+         */}
         <Suspense fallback={<LoadingBasicAnimation />}>
           <PrefectureList />
-          <div className={style.chart_container}>
+          <div className={style.population_chart_container}>
             <Suspense fallback={<LoadingBasicAnimation />}>
               <PopulationChart />
             </Suspense>

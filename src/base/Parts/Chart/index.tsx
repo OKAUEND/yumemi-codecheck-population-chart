@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+import style from './chart.module.scss';
 import { PopulationInfo, Prefectures } from '@/src/types/resas';
 import { colorsUtils } from '@/src/utile/color';
 
@@ -20,6 +21,7 @@ interface Props {
 export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
   return (
     <>
+      <div className={style.cart_xaxis_label}>人口数</div>
       <ResponsiveContainer width="100%" height={400}>
         <LineChart
           width={700}
@@ -33,7 +35,10 @@ export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="year" />
+          <XAxis
+            dataKey="year"
+            label={{ value: '年度', position: 'bottom', dx: 0 }}
+          />
           <YAxis
             width={100}
             tickFormatter={(value) => `${value.toLocaleString()}`}
@@ -52,9 +57,10 @@ export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
           <Legend
             layout="horizontal"
             verticalAlign="bottom"
-            align="center"
+            align="left"
             wrapperStyle={{
-              paddingLeft: '10px',
+              paddingTop: '20px',
+              paddingLeft: '100px',
             }}
           />
           <Tooltip />

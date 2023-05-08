@@ -4,7 +4,7 @@ import { PopulationInfo } from '@/src/feature/PopulationChart';
 
 function App() {
   return (
-    <section className={`${style.root}`}>
+    <section className={`${style.main}`}>
       <PopulationInfo />
     </section>
   );

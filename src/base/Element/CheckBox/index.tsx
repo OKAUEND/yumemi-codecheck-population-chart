@@ -18,14 +18,14 @@ export const CheckBox = ({ label, value, changeHandler }: Props) => {
   };
 
   return (
-    <label className={style.label}>
+    <label className={style.checkbox_group}>
       <input
         className={style.checkbox}
         type="checkbox"
         value={value}
         onChange={onChange}
       />
-      <span className={style.text}> {label}</span>
+      <span className={style.checkbox_text}> {label}</span>
     </label>
   );
 };

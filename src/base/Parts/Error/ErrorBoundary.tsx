@@ -36,7 +36,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: Error) {
-    //エラーステータスとともにセットすることで、エラーステータスで処理を分けれるようにする
+    //エラーメッセージを元にエラーステータスを生成させ、エラー画面で表現のエラー文面の切り替えを可能にする
     const errorCode = parseErrorCode(error.message);
 
     return {
@@ -47,7 +47,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   render(): React.ReactNode {
     if (this.state.hasError) {
-      //エラーステータスをフォールバックのコンポーネントへ渡すようにし、拡張性を持たせる
+      //エラーステータスをフォールバックのコンポーネントへ渡すようにし、コンポーネントの拡張性を持たせる
       return this.props.fallback({ status: this.state.status });
     }
 
