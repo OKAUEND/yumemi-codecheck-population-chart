@@ -13,12 +13,12 @@ export const PopulationInfo = () => {
       <ErrorBoundaryExtended>
         <Suspense fallback={<LoadingBasicAnimation />}>
           <PrefectureList />
+          <div className={style.chart_container}>
+            <Suspense fallback={<LoadingBasicAnimation />}>
+              <PopulationChart />
+            </Suspense>
+          </div>
         </Suspense>
-        <div className={style.chart_container}>
-          <Suspense fallback={<LoadingBasicAnimation />}>
-            <PopulationChart />
-          </Suspense>
-        </div>
       </ErrorBoundaryExtended>
     </section>
   );
