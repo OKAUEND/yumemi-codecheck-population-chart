@@ -20,7 +20,7 @@ export const Radio = ({
   };
 
   return (
-    <label className={style.label}>
+    <label className={style.radio_group}>
       <input
         className={style.radio}
         type="radio"
@@ -29,7 +29,7 @@ export const Radio = ({
         checked={checked}
         onChange={onChange}
       />
-      <span className={style.text}> {label}</span>
+      <span className={style.radio_text}> {label}</span>
     </label>
   );
 };

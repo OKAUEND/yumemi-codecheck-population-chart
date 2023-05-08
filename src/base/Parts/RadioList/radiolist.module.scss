@@ -1,11 +1,11 @@
-.listbase {
+.radio_container {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0;
   padding: 0;
-  .list {
+  .radio_list {
     margin-bottom: 30px;
     @include mq(sm) {
       width: 150px;
