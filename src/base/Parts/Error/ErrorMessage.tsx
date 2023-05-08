@@ -1,5 +1,6 @@
 import { useErrorState } from '@/src/base/Parts/Error/hook/useErrorState';
 import { CallBackProps } from './type/ErrorMessage';
+import style from '@/src/base/Parts/Error/style/ErrorMessage.module.scss';
 
 /**
  * エラーコードによってメッセージを表示させる
@@ -9,7 +10,7 @@ import { CallBackProps } from './type/ErrorMessage';
 const ErrorMessage = ({ status }: CallBackProps) => {
   const message = useErrorState(status);
   return (
-    <section>
+    <section className={style.errorMessage}>
       <h1>{status}</h1>
       <span>{message.message}</span>
       <span>{message.subMessage}</span>
