@@ -14,14 +14,14 @@ export const fetchRESAS = async <T>(url: string) => {
   const data: ResasResponse<T> = await res.json();
 
   if (typeof data === 'number') {
-    throw new Error(`RESAS Error Status ${data}`);
+    throw new Error(`${data}`);
   }
 
   if (!('result' in data)) {
     if (data.message === null) {
-      throw new Error(`RESAS Error Many Request`);
+      throw new Error(`429 Many Request`);
     }
-    throw new Error(`RESAS Error ${data.statusCode} ${data.message}`);
+    throw new Error(`${data.statusCode} ${data.message}`);
   }
 
   return data;

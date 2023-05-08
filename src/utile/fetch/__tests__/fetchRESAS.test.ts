@@ -15,16 +15,14 @@ describe('fetchRESAS TEST', () => {
   });
   test('通信失敗:400', async () => {
     server.use(fetchRESASHandler(400));
-    expect(fetchRESAS(resasMockPath)).rejects.toThrowError(
-      `RESAS Error Status 400`
-    );
+    expect(fetchRESAS(resasMockPath)).rejects.toThrowError(`400`);
   });
 
   test('通信失敗:403', async () => {
     server.use(fetchRESASHandler(403));
 
     expect(fetchRESAS(resasMockPath)).rejects.toThrowError(
-      new Error(`RESAS Error ${403} Forbidden`)
+      new Error(`${403} Forbidden`)
     );
   });
 
@@ -32,15 +30,15 @@ describe('fetchRESAS TEST', () => {
     server.use(fetchRESASHandler(404));
 
     expect(fetchRESAS(resasMockPath)).rejects.toThrowError(
-      new Error(`RESAS Error ${404} Not Found`)
+      new Error(`${404} Not Found`)
     );
   });
 
-  test('通信失敗:404', async () => {
+  test('通信失敗:429', async () => {
     server.use(fetchRESASHandler(429));
 
     expect(fetchRESAS(resasMockPath)).rejects.toThrowError(
-      new Error(`RESAS Error Many Request`)
+      new Error(`429 Many Request`)
     );
   });
 });
