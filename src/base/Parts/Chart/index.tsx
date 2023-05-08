@@ -21,7 +21,10 @@ interface Props {
 export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
   return (
     <>
-      <div className={style.cart_xaxis_label}>人口数</div>
+      <div className={style.cart_xaxis_label}>
+        {populationInfo.length === 0 ? '' : '人口数'}
+      </div>
+
       <ResponsiveContainer width="100%" height={400}>
         <LineChart
           width={700}
