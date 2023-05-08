@@ -32,6 +32,6 @@ describe('PopulationQuery TEST', () => {
   test('通信失敗:500', async () => {
     server.use(populationsHandler(500));
 
-    expect(populationQuery(query)).rejects.toThrowError(new Error(`Error`));
+    expect(populationQuery(query)).rejects.toThrowError(new Error(`500`));
   });
 });

@@ -26,6 +26,6 @@ describe('PrefecturesQuery TEST', () => {
   test('通信失敗:500', async () => {
     server.use(prefecturesHandler(500));
 
-    expect(prefecturesQuery).rejects.toThrowError(new Error(`Error`));
+    expect(prefecturesQuery).rejects.toThrowError('500');
   });
 });
