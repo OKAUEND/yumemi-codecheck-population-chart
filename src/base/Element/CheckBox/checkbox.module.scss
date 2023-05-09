@@ -45,5 +45,9 @@
 .checkbox_text {
   display: block;
   font-weight: 550;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  @include mq(xs) {
+    font-weight: 550;
+    font-size: 1.2rem;
+  }
 }

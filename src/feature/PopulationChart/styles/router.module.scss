@@ -6,6 +6,10 @@
   align-items: center;
 
   .population_chart_container {
+    width: 100%;
     height: 580px;
+    @include mq(lg) {
+      width: 800px;
+    }
   }
 }

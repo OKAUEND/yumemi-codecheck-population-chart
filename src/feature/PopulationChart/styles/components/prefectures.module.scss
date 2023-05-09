@@ -4,8 +4,21 @@
   }
 
   .prefectures_list {
-    padding-left: 40px;
+    padding-left: 20px;
     padding-right: 10px;
+    width: 100%;
+
+    @include mq(xs) {
+      padding-left: 60px;
+      padding-right: 15px;
+      width: 100%;
+    }
+
+    @include mq(md) {
+      padding-left: 40px;
+      padding-right: 20px;
+      width: 100%;
+    }
 
     @include mq(lg) {
       padding-left: 60px;
