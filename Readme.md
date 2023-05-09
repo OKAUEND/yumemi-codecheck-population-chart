@@ -33,7 +33,7 @@ VITE_RESAS_API_KEY=" You API Key "
 ### ビルド
 
 ```
-yarn Build
+yarn build
 ```
 
 ### 開発環境起動
