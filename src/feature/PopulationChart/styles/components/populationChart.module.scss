@@ -2,9 +2,9 @@
   padding-right: 10px;
   width: 100%;
 
-  @include mq(lg) {
+  @include mq(xs) {
     padding-right: 20px;
-    width: 800px;
+    width: 100%px;
   }
 }
 
