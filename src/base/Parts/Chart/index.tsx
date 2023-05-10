@@ -10,7 +10,7 @@ import {
 } from 'recharts';
 
 import style from './chart.module.scss';
-import { PopulationInfo, Prefectures } from '@/src/types/resas';
+import { PopulationInfo, Prefectures } from '@/src/types/RESAS';
 import { colorsUtils } from '@/src/utile/color';
 
 interface Props {

@@ -4,7 +4,7 @@ import {
   Populations,
   Population,
   Category,
-} from '@/src/types/resas';
+} from '@/src/types/RESAS';
 import {
   populationCategories,
   Categoryies,
