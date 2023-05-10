@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { ResasResponse, Prefectures } from '@/src/types/RESAS';
+import { Populations } from '@/src/types/Resas.ts';
 
 const path = () => 'https://opendata.resas-portal.go.jp/api/v1/prefectures';
 
