@@ -1,5 +1,5 @@
 import { CheckBox } from '@/src/base/Element/CheckBox';
-import { Prefectures } from '@/src/types/RESAS';
+import { Prefectures } from '@/src/types/Resas';
 import { SelectedCheckbox } from '@/src/types/Element';
 import styles from './checkboxList.module.scss';
 
