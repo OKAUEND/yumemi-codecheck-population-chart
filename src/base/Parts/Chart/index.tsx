@@ -21,7 +21,7 @@ interface Props {
 export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
   return (
     <>
-      <div className={style.cart_xaxis_label}>
+      <div className={styles.cart_xAxis_label}>
         {populationInfo.length === 0 ? '' : '人口数'}
       </div>
 
