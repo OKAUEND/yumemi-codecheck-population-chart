@@ -9,7 +9,12 @@ if (import.meta.env.MODE === 'development') {
   worker.start();
 }
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+const root = document.getElementById('root');
+if (!root) {
+  throw new Error('Page not found.');
+}
+
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <RecoilRoot>
       <App />
