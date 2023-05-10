@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { describe, vi, test } from 'vitest';
 import { Radio } from './index';
 
-describe('ChekcBox Component', () => {
+describe('RadioButton Component', () => {
   test('ラジオボタンがクリックされた時にPropsの関数が呼び出されていること', async () => {
     const onChange = vi.fn();
     render(

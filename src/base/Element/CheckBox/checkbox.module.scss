@@ -15,7 +15,6 @@
   appearance: none;
   border: 2px solid #ddd;
   border-radius: 3px;
-  outline: none;
   transition: all 0.3s ease;
 
   &:checked {
@@ -39,6 +38,9 @@
     &:checked {
       transform: translate(-50%, -50%) scale(1);
     }
+  }
+  &:focus-within {
+    outline: solid 3px orange;
   }
 }
 

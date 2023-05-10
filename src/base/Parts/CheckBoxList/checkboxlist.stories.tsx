@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { CheckBoxList } from './index';
-import { generatePrefectures } from '@/src/feature/PopulationChart/mock/predectures';
+import { generatePrefectures } from '@/src/feature/PopulationChart/mock/prefectures';
 
 const meta = {
   title: 'Parts/CheckBoxList',

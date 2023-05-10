@@ -1,4 +1,4 @@
-import style from './checkbox.module.scss';
+import styles from './checkbox.module.scss';
 import { SelectedCheckbox } from '@/src/types/Element';
 
 interface Props {
@@ -18,14 +18,14 @@ export const CheckBox = ({ label, value, changeHandler }: Props) => {
   };
 
   return (
-    <label className={style.checkbox_group}>
+    <label className={styles.checkbox_group}>
       <input
-        className={style.checkbox}
+        className={styles.checkbox}
         type="checkbox"
         value={value}
         onChange={onChange}
       />
-      <span className={style.checkbox_text}> {label}</span>
+      <span className={styles.checkbox_text}> {label}</span>
     </label>
   );
 };

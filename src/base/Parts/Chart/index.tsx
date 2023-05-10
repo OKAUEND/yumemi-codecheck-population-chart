@@ -9,8 +9,8 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-import style from './chart.module.scss';
-import { PopulationInfo, Prefectures } from '@/src/types/resas';
+import styles from './chart.module.scss';
+import { PopulationInfo, Prefectures } from '@/src/types/RESAS';
 import { colorsUtils } from '@/src/utile/color';
 
 interface Props {
@@ -18,10 +18,10 @@ interface Props {
   selectedPref: Prefectures[];
 }
 
-export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
+export const RechartExtend = ({ populationInfo, selectedPref }: Props) => {
   return (
     <>
-      <div className={style.cart_xaxis_label}>
+      <div className={styles.cart_xAxis_label}>
         {populationInfo.length === 0 ? '' : '人口数'}
       </div>
 
