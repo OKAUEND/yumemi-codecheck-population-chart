@@ -18,7 +18,7 @@ interface Props {
   selectedPref: Prefectures[];
 }
 
-export const LineChrt = ({ populationInfo, selectedPref }: Props) => {
+export const RechartExtend = ({ populationInfo, selectedPref }: Props) => {
   return (
     <>
       <div className={styles.cart_xAxis_label}>
