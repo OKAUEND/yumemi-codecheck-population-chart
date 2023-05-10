@@ -1,5 +1,5 @@
 import { fetchRESAS } from '@/src/utile/fetch';
-import { Prefectures } from '@/src/types/Resas';
+import { Prefectures } from '@/src/types/RESAS';
 
 export const prefecturesQuery = async () => {
   const res = await fetchRESAS<Prefectures[]>(
