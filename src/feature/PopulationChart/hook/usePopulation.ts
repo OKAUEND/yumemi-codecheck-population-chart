@@ -7,7 +7,7 @@ import {
   waitForAll,
 } from 'recoil';
 
-import { Prefectures, PopulationInfo, Populations } from '@/src/types/Resas';
+import { Prefectures, PopulationInfo, Populations } from '@/src/types/RESAS';
 import { populationQuery } from '@/src/feature/PopulationChart/api/populationQuery';
 import { prefecturesMapToArray } from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';
 
