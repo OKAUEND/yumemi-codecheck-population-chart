@@ -1,5 +1,5 @@
 import { Radio } from '@/src/base/Element/Radio';
-import style from './radioList.module.scss';
+import styles from './radioList.module.scss';
 
 interface Props {
   categories: string[];
@@ -15,9 +15,9 @@ export const RadioList = ({
   changeHandler,
 }: Props) => {
   return (
-    <ul className={style.radio_container}>
+    <ul className={styles.radio_container}>
       {categories.map((category, index) => (
-        <li key={index} className={style.radio_list}>
+        <li key={index} className={styles.radio_list}>
           <Radio
             categories={group}
             label={category}

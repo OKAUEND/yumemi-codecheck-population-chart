@@ -1,9 +1,9 @@
-import style from './Loading.module.scss';
+import styles from './Loading.module.scss';
 
 export const LoadingBasicAnimation = () => {
   return (
-    <article className={style.container}>
-      <div className={style.loading} />
+    <article className={styles.container}>
+      <div className={styles.loading} />
     </article>
   );
 };

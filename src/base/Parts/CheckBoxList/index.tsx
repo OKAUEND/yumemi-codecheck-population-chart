@@ -1,7 +1,7 @@
 import { CheckBox } from '@/src/base/Element/CheckBox';
 import { Prefectures } from '@/src/types/RESAS';
 import { SelectedCheckbox } from '@/src/types/Element';
-import style from './checkboxList.module.scss';
+import styles from './checkboxList.module.scss';
 
 interface Props {
   values: Prefectures[];
@@ -10,9 +10,9 @@ interface Props {
 
 export const CheckBoxList = ({ values, changeHandler }: Props) => {
   return (
-    <ul className={style.checkbox_container}>
+    <ul className={styles.checkbox_container}>
       {values.map((value) => (
-        <li key={value.prefCode} className={style.checkbox_list}>
+        <li key={value.prefCode} className={styles.checkbox_list}>
           <CheckBox
             label={value.prefName}
             value={value.prefCode}

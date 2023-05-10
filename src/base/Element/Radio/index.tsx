@@ -1,4 +1,4 @@
-import style from './radio.module.scss';
+import styles from './radio.module.scss';
 
 interface Props {
   label: string;
@@ -20,16 +20,16 @@ export const Radio = ({
   };
 
   return (
-    <label className={style.radio_group}>
+    <label className={styles.radio_group}>
       <input
-        className={style.radio}
+        className={styles.radio}
         type="radio"
         value={value}
         name={categories}
         checked={checked}
         onChange={onChange}
       />
-      <span className={style.radio_text}> {label}</span>
+      <span className={styles.radio_text}> {label}</span>
     </label>
   );
 };

@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-import style from './chart.module.scss';
+import styles from './chart.module.scss';
 import { PopulationInfo, Prefectures } from '@/src/types/RESAS';
 import { colorsUtils } from '@/src/utile/color';
 
