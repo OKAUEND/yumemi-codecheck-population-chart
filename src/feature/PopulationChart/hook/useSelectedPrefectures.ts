@@ -1,5 +1,5 @@
 import { atom, selector, useRecoilCallback, useRecoilValue } from 'recoil';
-import { Prefectures } from '@/src/types/Resas.ts';
+import { Populations } from '@/src/types/Resas.ts';
 import { SelectedCheckbox } from '@/src/types/Element';
 
 export const selectedPrefectures = atom<Map<number, Prefectures>>({

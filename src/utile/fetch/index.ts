@@ -1,4 +1,4 @@
-import { ResasResponse } from '@/src/types/Resas.ts';
+import { Populations } from '@/src/types/Resas.ts';
 
 export const fetchRESAS = async <T>(url: string) => {
   const API_KEY = import.meta.env.VITE_RESAS_API_KEY;

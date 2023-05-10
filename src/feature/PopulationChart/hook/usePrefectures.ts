@@ -1,5 +1,5 @@
 import { selector, useRecoilValue } from 'recoil';
-import { Prefectures } from '@/src/types/Resas.ts';
+import { Populations } from '@/src/types/Resas.ts';
 import { prefecturesQuery } from '@/src/feature/PopulationChart/api/prefecturesQuery';
 
 const prefectures = selector<Prefectures[]>({
