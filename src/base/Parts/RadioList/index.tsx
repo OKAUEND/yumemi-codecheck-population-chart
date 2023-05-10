@@ -1,5 +1,5 @@
 import { Radio } from '@/src/base/Element/Radio';
-import style from './radiolist.module.scss';
+import style from './radioList.module.scss';
 
 interface Props {
   categories: string[];
