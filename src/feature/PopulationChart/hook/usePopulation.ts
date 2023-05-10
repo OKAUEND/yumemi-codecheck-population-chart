@@ -7,7 +7,7 @@ import {
   waitForAll,
 } from 'recoil';
 
-import { Prefectures, PopulationInfo, Populations } from '@/src/types/resas';
+import { Prefectures, PopulationInfo, Populations } from '@/src/types/RESAS';
 import { populationQuery } from '@/src/feature/PopulationChart/api/populationQuery';
 import { prefecturesMapToArray } from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';
 
@@ -19,12 +19,12 @@ const prefQuery = 'prefCode=';
 /**
  * 人口情報カテゴリーの型定義
  */
-export type Categoryies = '総人口' | '年少人口' | '生産年齢人口' | '老年人口';
+export type Categories = '総人口' | '年少人口' | '生産年齢人口' | '老年人口';
 
 /**
  * 人口情報カテゴリーの配列
  */
-export const populationCategories: Categoryies[] = [
+export const populationCategories: Categories[] = [
   '総人口',
   '年少人口',
   '生産年齢人口',
@@ -99,17 +99,17 @@ const populations = selector({
     //Recahrtで複数の凡例を表示する場合、同じオブジェクトのプロパティに含まれず、
     //別のオブジェクトとして配列にある場合は、チャートの表示が繰り返されてしまう。
     //そのため、複数のオブジェクトを1つにまとめる
-    const formmtedInfo = populations.reduce((prevInfo, curreantInfo) => {
+    const formattedInfo = populations.reduce((prevInfo, currantInfo) => {
       const result = prevInfo.map((yearInfo) => {
-        const curreantResult = curreantInfo.find(
-          (curreanYearInfo) => curreanYearInfo.year === yearInfo.year
+        const currentResult = currantInfo.find(
+          (currentYearInfo) => currentYearInfo.year === yearInfo.year
         );
-        return { ...yearInfo, ...curreantResult };
+        return { ...yearInfo, ...currentResult };
       });
       return result;
     });
 
-    return formmtedInfo;
+    return formattedInfo;
   },
 });
 

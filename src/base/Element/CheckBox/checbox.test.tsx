@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { describe, vi, test } from 'vitest';
 import { CheckBox } from './index';
 
-describe('ChekcBox Component', () => {
+describe('CheckBox Component', () => {
   test('チェックボックスがクリックされた時にPropsの関数が呼び出されていること', async () => {
     const onChange = vi.fn();
     render(<CheckBox label={'TESTCity'} value={1} changeHandler={onChange} />);

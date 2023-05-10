@@ -2,7 +2,7 @@ import { describe, test, expect } from 'vitest';
 import { waitFor } from '@testing-library/react';
 
 import { setupMockServer } from '@/src/mock/setup';
-import { prefecturesHandler } from '@/src/feature/PopulationChart/mock/predectures';
+import { prefecturesHandler } from '@/src/feature/PopulationChart/mock/prefectures';
 
 import { prefecturesQuery } from '@/src/feature/PopulationChart/api/prefecturesQuery';
 

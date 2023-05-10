@@ -1,10 +1,10 @@
-import style from '@/src/styles/App.module.scss';
+import styles from '@/src/styles/App.module.scss';
 
 import { PopulationInfo } from '@/src/feature/PopulationChart';
 
 function App() {
   return (
-    <section className={`${style.main}`}>
+    <section className={`${styles.main}`}>
       <PopulationInfo />
     </section>
   );

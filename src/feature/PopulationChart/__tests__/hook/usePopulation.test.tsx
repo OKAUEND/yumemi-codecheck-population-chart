@@ -12,7 +12,7 @@ import {
   usePopulation,
   usePopulationCategories,
   populationCategories,
-  Categoryies,
+  Categories,
 } from '@/src/feature/PopulationChart/hook/usePopulation';
 import {
   selectedPrefectures,
@@ -180,7 +180,7 @@ describe('usePopulationCategories Hook TEST', () => {
       wrapper: RecoilRoot,
     });
 
-    const testDate: Categoryies = populationCategories[2];
+    const testDate: Categories = populationCategories[2];
 
     expect(result.current[1]).toEqual(populationCategories[0]);
 
