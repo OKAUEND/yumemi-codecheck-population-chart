@@ -4,7 +4,7 @@ import {
   Populations,
   Population,
   Category,
-import { Populations } from '@/src/types/Resas.ts';
+} from '@/src/types/resas';
 import {
   populationCategories,
   Categories,

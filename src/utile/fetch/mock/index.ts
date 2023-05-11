@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { Populations } from '@/src/types/Resas.ts';
+import { ResasResponse, Prefectures } from '@/src/types/resas';
 
 export const resasMockPath = 'https://opendata.resas-portal.go.jp/api/v1/Mock';
 

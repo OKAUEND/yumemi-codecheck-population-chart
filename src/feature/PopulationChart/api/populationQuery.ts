@@ -1,5 +1,5 @@
 import { fetchRESAS } from '@/src/utile/fetch';
-import { Populations } from '@/src/types/Resas.ts';
+import { Populations } from '@/src/types/resas';
 
 export const populationQuery = async (query: string) => {
   const res = await fetchRESAS<Populations>(
