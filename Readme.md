@@ -57,7 +57,7 @@ yarn cove
 ### コードチェック(ESLint)
 
 ```
-yarn check
+yarn lint
 ```
 
 ### Lint 実行(ESLint)
