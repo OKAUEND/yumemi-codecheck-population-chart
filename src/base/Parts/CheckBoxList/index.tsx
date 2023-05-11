@@ -2,7 +2,7 @@ import { CheckBox } from '@/src/base/Element/CheckBox';
 import { Prefectures } from '@/src/types/resas';
 import { SelectedCheckbox } from '@/src/types/Element';
 
-import styles from '@/src/base/Parts/CheckBoxList/checkboxList.module.scss';
+import styles from '@/src/base/Parts/CheckBoxList/checkboxes.module.scss';
 
 interface Props {
   values: Prefectures[];
