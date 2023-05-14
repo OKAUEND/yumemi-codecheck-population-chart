@@ -1,6 +1,5 @@
 import {
   atom,
-  selector,
   selectorFamily,
   useRecoilCallback,
   useRecoilValue,
@@ -9,7 +8,6 @@ import {
 
 import { Prefectures, PopulationInfo, Populations } from '@/src/types/resas';
 import { populationQuery } from '@/src/feature/PopulationChart/api/populationQuery';
-import { prefecturesMapToArray } from '@/src/feature/PopulationChart/hook/useSelectedPrefectures';
 
 /**
  * RESAS用都道府県クエリ
@@ -30,6 +28,16 @@ export const populationCategories: Categories[] = [
   '生産年齢人口',
   '老年人口',
 ];
+
+type SelectedsInfo = {
+  selectedPrefs: Prefectures[];
+  selectedCategory: string;
+};
+
+type SelectedInfo = {
+  prefecture: Prefectures;
+  selectedCategory: string;
+};
 
 /**
  * 選択中のカテゴリー。初期値は総人口
@@ -53,12 +61,11 @@ const populationsQuery = selectorFamily<Populations, Prefectures>({
   },
 });
 
-const filteredPopulation = selectorFamily<PopulationInfo[], Prefectures>({
+const filteredPopulation = selectorFamily<PopulationInfo[], SelectedInfo>({
   key: 'data-flow/filtered-population',
   get:
-    (prefecture) =>
+    ({ prefecture, selectedCategory }) =>
     async ({ get }): Promise<PopulationInfo[]> => {
-      const selectedCategory = get(selectedCategoryState);
       const populations = get(populationsQuery(prefecture));
 
       //RESASの人口情報の配列から現在選択中のカテゴリーを元に対象データの抽出を行う
@@ -76,45 +83,56 @@ const filteredPopulation = selectorFamily<PopulationInfo[], Prefectures>({
     },
 });
 
-const populations = selector({
+const formattedPopulations = selectorFamily<PopulationInfo[], SelectedsInfo>({
   key: 'data-flow/populations',
-  get: ({ get }) => {
-    const selectedPrefectures = get(prefecturesMapToArray);
+  get:
+    ({ selectedPrefs, selectedCategory }) =>
+    ({ get }) => {
+      //Recoilで取得などをループで回す場合、逐次呼び出しになるため並列化するためにwaitForAllを使う
+      //選ばれた都道府県毎にAPIコール関数を呼び出す
+      const populations = get(
+        waitForAll(
+          selectedPrefs.map((prefecture) => {
+            return filteredPopulation({ prefecture, selectedCategory });
+          })
+        )
+      );
 
-    //Recoilで取得などをループで回す場合、逐次呼び出しになるため並列化するためにwaitForAllを使う
-    //選ばれた都道府県毎にAPIコール関数を呼び出す
-    const populations = get(
-      waitForAll(
-        selectedPrefectures.map((prefecture) => {
-          return filteredPopulation(prefecture);
-        })
-      )
-    );
+      //配列の要素が0だった場合、次の変換処理を行わせたくないのでここでガードする
+      if (populations.length === 0) {
+        return [];
+      }
 
-    //配列の要素が0だった場合、次の変換処理を行わせたくないのでここでガードする
-    if (populations.length === 0) {
-      return [];
-    }
-
-    //Recahrtで複数の凡例を表示する場合、同じオブジェクトのプロパティに含まれず、
-    //別のオブジェクトとして配列にある場合は、チャートの表示が繰り返されてしまう。
-    //そのため、複数のオブジェクトを1つにまとめる
-    const formattedInfo = populations.reduce((prevInfo, currantInfo) => {
-      const result = prevInfo.map((yearInfo) => {
-        const currentResult = currantInfo.find(
-          (currentYearInfo) => currentYearInfo.year === yearInfo.year
-        );
-        return { ...yearInfo, ...currentResult };
+      //Recahrtで複数の凡例を表示する場合、同じオブジェクトのプロパティに含まれず、
+      //別のオブジェクトとして配列にある場合は、チャートの表示が繰り返されてしまう。
+      //そのため、複数のオブジェクトを1つにまとめる
+      const formattedInfo = populations.reduce((prevInfo, currantInfo) => {
+        const result = prevInfo.map((yearInfo) => {
+          const currentResult = currantInfo.find(
+            (currentYearInfo) => currentYearInfo.year === yearInfo.year
+          );
+          return { ...yearInfo, ...currentResult };
+        });
+        return result;
       });
-      return result;
-    });
 
-    return formattedInfo;
-  },
+      return formattedInfo;
+    },
 });
 
-export const usePopulation = () => {
-  return useRecoilValue(populations);
+const populationList = selectorFamily<PopulationInfo[], SelectedsInfo>({
+  key: 'data-flow/population-list',
+  get:
+    ({ selectedPrefs, selectedCategory }) =>
+    ({ get }) => {
+      return get(formattedPopulations({ selectedPrefs, selectedCategory }));
+    },
+});
+
+export const usePopulation = (selected: Prefectures[], category: string) => {
+  return useRecoilValue(
+    populationList({ selectedPrefs: selected, selectedCategory: category })
+  );
 };
 
 export const usePopulationCategories = () => {
